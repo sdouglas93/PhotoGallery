@@ -1,1 +1,30 @@
-<p>images works!</p>
+<html lang="en">
+
+<body>
+  <mat-form-field>
+    <mat-label>Filter By:</mat-label>
+    <mat-select>
+      <mat-option id="matCard"  *ngFor="let filter of filteredImages" [value]="filter.width" [attr.data-width]="filter.width" [attr.data-height]="filter.height" (click) ="filterChange(filter.width,filter.height)">
+        {{filter.width}} x {{filter.height}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container">
+    <p>images works!</p>
+    <mat-grid-list cols="4" [gutterSize]="'5px'">
+      <mat-grid-tile *ngFor="let card of obs | async">
+        <!--<img src="{{image.url}}">-->
+        <mat-card class="alignCard">
+          <img mat-card-image src="{{card.url}}">
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</body>
+</html>
+
+<!--<mat-card *ngFor="let image of imageList">
+  <img mat-card-image src="{{image.url}}" alt="Photo of a Shiba Inu">
+</mat-card>-->

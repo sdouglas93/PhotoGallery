@@ -3,25 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ImageViewer.Models;
+using ImageViewer.Repository;
 
 namespace ImageViewer.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    //[Route("api/[controller]")]
+    //[ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
+        ImageRepository imageRepo = new ImageRepository();
+
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [Route("api/Values/GetAllImages")]
+        public IEnumerable<Image> GetAllImages()
         {
-            return new string[] { "value1", "value2" };
+            return imageRepo.GetAllImages();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        //[HttpGet("{id}")]
+        [HttpGet]
+        [Route("api/Values/GetFilteredImages/{width}/{height}")]
+        public IEnumerable<Image> GetFilteredImages(int width,int height)
         {
-            return "value";
+            var allImages = GetAllImages();
+
+            return allImages = allImages.Where(ai => ai.width == width && ai.height == height);
         }
 
         // POST api/values
