@@ -12,6 +12,7 @@ https://visualstudio.microsoft.com/vs/mac/
 5.) Press play button to run project
 
 API
+
 https://localhost:5001/api/values/getallimages
 
 https://localhost:5001/api/Values/GetFilteredImages/{width}/{height}
