@@ -13,4 +13,5 @@ https://visualstudio.microsoft.com/vs/mac/
 
 API
 https://localhost:5001/api/values/getallimages
+
 https://localhost:5001/api/Values/GetFilteredImages/{width}/{height}
